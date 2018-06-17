@@ -1,24 +1,10 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 概要
 
-Things you may want to cover:
+gem**devise**を理解するためのrailsプロジェクト。  
+deviseの簡単なログイン機能を実装し、  
+deviseから提供される機能を網羅＆理解する。
 
-* Ruby version
+# 参考サイト
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[Railsの認証Gem、Deviseとはなんなのか](http://astap.hatenablog.jp/entry/2017/04/16/221349)

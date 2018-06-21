@@ -48,7 +48,7 @@ devise（認証周り）の機能がサポートされたモデル、
 **db/migrate/20180621230953_devise_create_users.rb**  
 マイグレーションファイル。
 
-**app/models/user.rb**
+**app/models/user.rb**  
 生成された際、以下のようなコードが実装されている。  
 ```ruby
   devise :database_authenticatable, :registerable,

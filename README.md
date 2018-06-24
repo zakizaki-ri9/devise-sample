@@ -3,7 +3,7 @@
 
 gem**devise**を理解するためのrailsプロジェクト。  
 deviseの簡単なログイン機能を実装し、  
-deviseから提供される機能を網羅＆理解する。
+deviseから提供される機能を網羅＆理解する。
 
 # 参考サイト
 
@@ -11,6 +11,9 @@ deviseから提供される機能を網羅＆理解する。
 - [【Rails備忘録】deviseまとめ](https://qiita.com/ShinyaKato/items/a098a741a142616a753e)
 
 # devise系コマンドのメモ
+
+*devise*を用いたコマンドの意味合いおよび、  
+生成される主要のファイルについての説明を記載する。
 
 ## rails g devise:install
 devise全般的な設定ファイルと、  
@@ -66,3 +69,82 @@ OmniAuth（Twitter等を利用した登録）サポート（omniauthable）を
 ルーティングを独自にいじりたい場合は、以下記事参照。  
 
 - [devise でログインログアウトのパスを変更したいときの注意点](https://blog.willnet.in/entry/2013/07/02/230352)
+
+## rails g devise:views User
+
+指定したモデル名「User」を元に  
+サインイン・ログイン・パスワード変更・etc...  
+のページを自動生成してくれる。　　
+
+```bash
+      invoke  Devise::Generators::SharedViewsGenerator
+      create    app/views/users/shared
+      create    app/views/users/shared/_links.html.erb
+      invoke  form_for
+      create    app/views/users/confirmations
+      create    app/views/users/confirmations/new.html.erb
+      create    app/views/users/passwords
+      create    app/views/users/passwords/edit.html.erb
+      create    app/views/users/passwords/new.html.erb
+      create    app/views/users/registrations
+      create    app/views/users/registrations/edit.html.erb
+      create    app/views/users/registrations/new.html.erb
+      create    app/views/users/sessions
+      create    app/views/users/sessions/new.html.erb
+      create    app/views/users/unlocks
+      create    app/views/users/unlocks/new.html.erb
+      invoke  erb
+      create    app/views/users/mailer
+      create    app/views/users/mailer/confirmation_instructions.html.erb
+      create    app/views/users/mailer/email_changed.html.erb
+      create    app/views/users/mailer/password_change.html.erb
+      create    app/views/users/mailer/reset_password_instructions.html.erb
+      create    app/views/users/mailer/unlock_instructions.html.erb
+```
+
+**app/views/users/shared/_links.html.erb**  
+各　`〜.new.erb` の画面下部で部分ビューとして使用されている、  
+サインイン・ログインページへのリンクを羅列したView。  
+
+ソースを見てみると、  
+
+```
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+  <% end -%>
+<% end -%>
+```
+
+すでに`OmniAuth`との連携が前提で実装されていることが伺える。  
+
+## rails g devise:controllers User
+
+指定したモデル名「User」を元にコントローラーを生成してくれる。  
+
+```bash
+      create  app/controllers/User/confirmations_controller.rb
+      create  app/controllers/User/passwords_controller.rb
+      create  app/controllers/User/registrations_controller.rb
+      create  app/controllers/User/sessions_controller.rb
+      create  app/controllers/User/unlocks_controller.rb
+      create  app/controllers/User/omniauth_callbacks_controller.rb
+===============================================================================
+
+Some setup you must do manually if you haven't yet:
+
+  Ensure you have overridden routes for generated controllers in your routes.rb.
+  For example:
+
+    Rails.application.routes.draw do
+      devise_for :users, controllers: {
+        sessions: 'users/sessions'
+      }
+    end
+
+===============================================================================
+```
+
+コマンド入力後に出力されるログに記載されている通り、  
+`config/routes.rb`に対して、  
+自分でルーティングの設定を行う必要がある。  

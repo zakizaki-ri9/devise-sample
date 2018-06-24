@@ -1,9 +1,9 @@
 
 # 概要
 
-gem**devise**を理解するためのrailsプロジェクト。  
+gem **devise** を理解するためのrailsプロジェクト。  
 deviseの簡単なログイン機能を実装し、  
-deviseから提供される機能を網羅＆理解する。
+deviseから提供される機能を網羅＆理解する。
 
 # 参考サイト
 
@@ -72,7 +72,7 @@ OmniAuth（Twitter等を利用した登録）サポート（omniauthable）を
 
 ## rails g devise:views User
 
-指定したモデル名「User」を元に  
+指定したモデル名「User」を元に  
 サインイン・ログイン・パスワード変更・etc...  
 のページを自動生成してくれる。　　
 
@@ -104,7 +104,7 @@ OmniAuth（Twitter等を利用した登録）サポート（omniauthable）を
 
 **app/views/users/shared/_links.html.erb**  
 各　`〜.new.erb` の画面下部で部分ビューとして使用されている、  
-サインイン・ログインページへのリンクを羅列したView。  
+サインイン・ログインページへのリンクを羅列したView。  
 
 ソースを見てみると、  
 
@@ -120,7 +120,7 @@ OmniAuth（Twitter等を利用した登録）サポート（omniauthable）を
 
 ## rails g devise:controllers User
 
-指定したモデル名「User」を元にコントローラーを生成してくれる。  
+指定したモデル名「User」を元にコントローラーを生成してくれる。  
 
 ```bash
       create  app/controllers/User/confirmations_controller.rb
@@ -145,6 +145,6 @@ Some setup you must do manually if you haven't yet:
 ===============================================================================
 ```
 
-コマンド入力後に出力されるログに記載されている通り、  
+コマンド入力後に出力されるログに記載されている通り、  
 `config/routes.rb`に対して、  
 自分でルーティングの設定を行う必要がある。  
